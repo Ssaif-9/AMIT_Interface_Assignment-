@@ -1,7 +1,3 @@
-# AMIT_Interface_Assignment-
-
-
-
 
 # Assignment 1
 • Using the DIO in the AVR make a LED OUT.
