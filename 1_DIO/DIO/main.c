@@ -16,7 +16,7 @@
 #define Second_Way     2
 #define Third_Way      3
 
-#define WayId          Third_Way
+#define WayId          First_Way
 
 
 #define F_CPU 16000000UL

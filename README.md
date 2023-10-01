@@ -25,3 +25,19 @@ Init your LCD on the 4 bits mode and make two push buttons connected to the exte
 • INIT your LCD in 4 bits mode and INIT ADC driver.
 • Connect the Potentiometer to the ADC pin and then calculate the volt produced by changing the Potentiometer value.
 • Present the volte value in mV on the LCD
+
+# Assignment 6 (soon)
+• Init PWM in fast mode and ADC.
+• Connect the DC motor on the PWM pin and the Potentiometer on the ADC pin.
+• Make a program that changes the DC motor speed by changing the potentiometer value.
+
+# Assignment 7
+• Init UART.
+• Make a LED as OUTPUT.
+• Make a simple code that takes a value from the user by using the virtual terminal on proteus or by using the Bluetooth module that’s included in your kit components.
+• When the user sends 1 the LED will be ON and when the user sends 0 the LED will be OFF.
+
+
+# Assignment 8
+• By using two microcontrollers connected by SPI communication Protocol, the first microcontroller will be used for pressing a pushbutton that will send a signal to the second microcontroller.
+• The second microcontroller will receive a signal from the first microcontroller and when received, a LED will be turned on, and will send a signal to the first to print on the LCD “led is on”.
