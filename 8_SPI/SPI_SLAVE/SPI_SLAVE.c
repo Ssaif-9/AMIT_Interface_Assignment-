@@ -11,18 +11,22 @@
 #include "STD_TYPE.h"
 #include "BIT_MATH.h"
 
-#include "DIO_config.h"
+
 #include "DIO_interface.h"
-#include "DIO_private.h"
+#include "DIO_config.h"
 
-#include "SPI_config.h"
 #include "SPI_interface.h"
-#include "SPI_private.h"
+#include "SPI_config.h"
 
-#include "LED_config.h"
 #include "LED_interface.h"
-#include "LED_private.h"
+#include "LED_config.h"
 
+
+#define MASTER_TRUE_SIGNAL  1
+#define MASTER_FALSE_SIGNAL 0
+
+#define SLAVE_TRUE_SIGNAL  2
+#define SLAVE_FALSE_SIGNAL 3
 
 
 int main(void)
@@ -34,22 +38,23 @@ int main(void)
 	DIO_SetPinDirection(SPI_SCLK_PORT,SPI_SCLK_PIN,DIO_PIN_INPUT);
 	DIO_SetPinDirection(SPI_MISO_PORT,SPI_MISO_PIN,DIO_PIN_OUTPUT);
 	
-	
 	SPI_init();
+	
 	LED_init(LED0_PORT,LED0_PIN);
 	
     while(1)
     {
+		
 		SPI_Receive(&ReceiveValue);
-		u8 pin =GET_BIT(PORTB_REG,DIO_PIN4);
-		if ( 0== pin)
+		if(MASTER_TRUE_SIGNAL==ReceiveValue)
 		{
+			SPI_Tranceive(SLAVE_TRUE_SIGNAL,&ReceiveValue);
 			LED_TurnON(LED0_PORT,LED0_PIN);
 		}
-		if ( 1==pin )
+		else
 		{
+			SPI_Tranceive(SLAVE_FALSE_SIGNAL,&ReceiveValue);
 			LED_TurnOFF(LED0_PORT,LED0_PIN);
 		}
-		
     }
 }

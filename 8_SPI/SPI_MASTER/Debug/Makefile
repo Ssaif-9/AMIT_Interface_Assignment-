@@ -37,8 +37,6 @@ SUBDIRS :=
 C_SRCS +=  \
 ../BUTTON_program.c \
 ../DIO_program.c \
-../EXTI_program.c \
-../GLBI_program.c \
 ../LCD_program.c \
 ../SPI_MASTER.c \
 ../SPI_program.c
@@ -53,8 +51,6 @@ ASM_SRCS +=
 OBJS +=  \
 BUTTON_program.o \
 DIO_program.o \
-EXTI_program.o \
-GLBI_program.o \
 LCD_program.o \
 SPI_MASTER.o \
 SPI_program.o
@@ -63,8 +59,6 @@ SPI_program.o
 OBJS_AS_ARGS +=  \
 BUTTON_program.o \
 DIO_program.o \
-EXTI_program.o \
-GLBI_program.o \
 LCD_program.o \
 SPI_MASTER.o \
 SPI_program.o
@@ -73,8 +67,6 @@ SPI_program.o
 C_DEPS +=  \
 BUTTON_program.d \
 DIO_program.d \
-EXTI_program.d \
-GLBI_program.d \
 LCD_program.d \
 SPI_MASTER.d \
 SPI_program.d
@@ -83,8 +75,6 @@ SPI_program.d
 C_DEPS_AS_ARGS +=  \
 BUTTON_program.d \
 DIO_program.d \
-EXTI_program.d \
-GLBI_program.d \
 LCD_program.d \
 SPI_MASTER.d \
 SPI_program.d
@@ -99,10 +89,6 @@ ADDITIONAL_DEPENDENCIES:=
 OUTPUT_FILE_DEP:= ./makedep.mk
 
 # AVR32/GNU C Compiler
-
-
-
-
 
 
 

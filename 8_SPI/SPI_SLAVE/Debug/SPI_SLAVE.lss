@@ -3,29 +3,29 @@ SPI_SLAVE.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000007ca  00000000  00000000  00000094  2**1
+  0 .text         000007d6  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  000007ca  0000085e  2**0
+  1 .data         00000000  00800060  000007d6  0000086a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000002  00800060  00800060  0000085e  2**0
+  2 .bss          00000002  00800060  00800060  0000086a  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  00000860  2**2
+  3 .stab         000006cc  00000000  00000000  0000086c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000085  00000000  00000000  00000f2c  2**0
+  4 .stabstr      00000085  00000000  00000000  00000f38  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 000000e0  00000000  00000000  00000fb8  2**3
+  5 .debug_aranges 000000e0  00000000  00000000  00000fc0  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000009ee  00000000  00000000  00001098  2**0
+  6 .debug_info   000009d5  00000000  00000000  000010a0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000002d4  00000000  00000000  00001a86  2**0
+  7 .debug_abbrev 000002bc  00000000  00000000  00001a75  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000060a  00000000  00000000  00001d5a  2**0
+  8 .debug_line   0000060a  00000000  00000000  00001d31  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000218  00000000  00000000  00002364  2**2
+  9 .debug_frame  00000218  00000000  00000000  0000233c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000341  00000000  00000000  0000257c  2**0
+ 10 .debug_str    000003c9  00000000  00000000  00002554  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000009b8  00000000  00000000  000028bd  2**0
+ 11 .debug_loc    0000098b  00000000  00000000  0000291d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -65,7 +65,7 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	ea ec       	ldi	r30, 0xCA	; 202
+  66:	e6 ed       	ldi	r30, 0xD6	; 214
   68:	f7 e0       	ldi	r31, 0x07	; 7
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
@@ -88,18 +88,12 @@ Disassembly of section .text:
   82:	b1 07       	cpc	r27, r17
   84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
   86:	0e 94 ad 03 	call	0x75a	; 0x75a <main>
-  8a:	0c 94 e3 03 	jmp	0x7c6	; 0x7c6 <_exit>
+  8a:	0c 94 e9 03 	jmp	0x7d2	; 0x7d2 <_exit>
 
 0000008e <__bad_interrupt>:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000092 <DIO_SetPinDirection>:
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
-	if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7) && (PInDirection<=DIO_PIN_OUTPUT))
   92:	84 30       	cpi	r24, 0x04	; 4
   94:	08 f0       	brcs	.+2      	; 0x98 <DIO_SetPinDirection+0x6>
   96:	8b c0       	rjmp	.+278    	; 0x1ae <DIO_SetPinDirection+0x11c>
@@ -109,8 +103,6 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
   9e:	42 30       	cpi	r20, 0x02	; 2
   a0:	08 f0       	brcs	.+2      	; 0xa4 <DIO_SetPinDirection+0x12>
   a2:	89 c0       	rjmp	.+274    	; 0x1b6 <DIO_SetPinDirection+0x124>
-	{
-    	switch(PortId)
   a4:	81 30       	cpi	r24, 0x01	; 1
   a6:	41 f1       	breq	.+80     	; 0xf8 <DIO_SetPinDirection+0x66>
   a8:	81 30       	cpi	r24, 0x01	; 1
@@ -122,9 +114,6 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
   b4:	09 f0       	breq	.+2      	; 0xb8 <DIO_SetPinDirection+0x26>
   b6:	81 c0       	rjmp	.+258    	; 0x1ba <DIO_SetPinDirection+0x128>
   b8:	5b c0       	rjmp	.+182    	; 0x170 <DIO_SetPinDirection+0xde>
-    	{
-		   case DIO_PORTA:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRA_REG,PinId)) : (CLR_BIT(DDRA_REG,PinId)) ;
   ba:	41 30       	cpi	r20, 0x01	; 1
   bc:	71 f4       	brne	.+28     	; 0xda <DIO_SetPinDirection+0x48>
   be:	2a b3       	in	r18, 0x1a	; 26
@@ -139,20 +128,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
   d0:	ba 01       	movw	r22, r20
   d2:	62 2b       	or	r22, r18
   d4:	6a bb       	out	0x1a, r22	; 26
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
   d6:	80 e0       	ldi	r24, 0x00	; 0
   d8:	08 95       	ret
-	if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7) && (PInDirection<=DIO_PIN_OUTPUT))
-	{
-    	switch(PortId)
-    	{
-		   case DIO_PORTA:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRA_REG,PinId)) : (CLR_BIT(DDRA_REG,PinId)) ;
   da:	2a b3       	in	r18, 0x1a	; 26
   dc:	81 e0       	ldi	r24, 0x01	; 1
   de:	90 e0       	ldi	r25, 0x00	; 0
@@ -166,20 +143,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
   ee:	60 95       	com	r22
   f0:	62 23       	and	r22, r18
   f2:	6a bb       	out	0x1a, r22	; 26
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
   f4:	80 e0       	ldi	r24, 0x00	; 0
   f6:	08 95       	ret
-		   case DIO_PORTA:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRA_REG,PinId)) : (CLR_BIT(DDRA_REG,PinId)) ;
-		   break;
-		   
-		   case DIO_PORTB:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRB_REG,PinId)) : (CLR_BIT(DDRB_REG,PinId)) ;
   f8:	41 30       	cpi	r20, 0x01	; 1
   fa:	69 f4       	brne	.+26     	; 0x116 <DIO_SetPinDirection+0x84>
   fc:	47 b3       	in	r20, 0x17	; 23
@@ -193,20 +158,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
  10c:	e2 f7       	brpl	.-8      	; 0x106 <DIO_SetPinDirection+0x74>
  10e:	84 2b       	or	r24, r20
  110:	87 bb       	out	0x17, r24	; 23
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  112:	80 e0       	ldi	r24, 0x00	; 0
  114:	08 95       	ret
-		   case DIO_PORTA:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRA_REG,PinId)) : (CLR_BIT(DDRA_REG,PinId)) ;
-		   break;
-		   
-		   case DIO_PORTB:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRB_REG,PinId)) : (CLR_BIT(DDRB_REG,PinId)) ;
  116:	27 b3       	in	r18, 0x17	; 23
  118:	81 e0       	ldi	r24, 0x01	; 1
  11a:	90 e0       	ldi	r25, 0x00	; 0
@@ -220,20 +173,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
  12a:	60 95       	com	r22
  12c:	62 23       	and	r22, r18
  12e:	67 bb       	out	0x17, r22	; 23
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  130:	80 e0       	ldi	r24, 0x00	; 0
  132:	08 95       	ret
-		   case DIO_PORTB:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRB_REG,PinId)) : (CLR_BIT(DDRB_REG,PinId)) ;
-		   break;
-		   
-		   case DIO_PORTC:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRC_REG,PinId)) :(CLR_BIT(DDRC_REG,PinId));
  134:	41 30       	cpi	r20, 0x01	; 1
  136:	69 f4       	brne	.+26     	; 0x152 <DIO_SetPinDirection+0xc0>
  138:	44 b3       	in	r20, 0x14	; 20
@@ -247,20 +188,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
  148:	e2 f7       	brpl	.-8      	; 0x142 <DIO_SetPinDirection+0xb0>
  14a:	84 2b       	or	r24, r20
  14c:	84 bb       	out	0x14, r24	; 20
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  14e:	80 e0       	ldi	r24, 0x00	; 0
  150:	08 95       	ret
-		   case DIO_PORTB:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRB_REG,PinId)) : (CLR_BIT(DDRB_REG,PinId)) ;
-		   break;
-		   
-		   case DIO_PORTC:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRC_REG,PinId)) :(CLR_BIT(DDRC_REG,PinId));
  152:	24 b3       	in	r18, 0x14	; 20
  154:	81 e0       	ldi	r24, 0x01	; 1
  156:	90 e0       	ldi	r25, 0x00	; 0
@@ -274,20 +203,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
  166:	60 95       	com	r22
  168:	62 23       	and	r22, r18
  16a:	64 bb       	out	0x14, r22	; 20
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  16c:	80 e0       	ldi	r24, 0x00	; 0
  16e:	08 95       	ret
-		   case DIO_PORTC:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRC_REG,PinId)) :(CLR_BIT(DDRC_REG,PinId));
-		   break;
-		   
-		   case DIO_PORTD:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRD_REG,PinId)) : (CLR_BIT(DDRD_REG,PinId));
  170:	41 30       	cpi	r20, 0x01	; 1
  172:	71 f4       	brne	.+28     	; 0x190 <DIO_SetPinDirection+0xfe>
  174:	21 b3       	in	r18, 0x11	; 17
@@ -302,20 +219,8 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
  186:	ba 01       	movw	r22, r20
  188:	62 2b       	or	r22, r18
  18a:	61 bb       	out	0x11, r22	; 17
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  18c:	80 e0       	ldi	r24, 0x00	; 0
  18e:	08 95       	ret
-		   case DIO_PORTC:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRC_REG,PinId)) :(CLR_BIT(DDRC_REG,PinId));
-		   break;
-		   
-		   case DIO_PORTD:
-		   (DIO_PIN_OUTPUT == PInDirection) ? (SET_BIT(DDRD_REG,PinId)) : (CLR_BIT(DDRD_REG,PinId));
  190:	21 b3       	in	r18, 0x11	; 17
  192:	81 e0       	ldi	r24, 0x01	; 1
  194:	90 e0       	ldi	r25, 0x00	; 0
@@ -329,47 +234,18 @@ DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
  1a4:	60 95       	com	r22
  1a6:	62 23       	and	r22, r18
  1a8:	61 bb       	out	0x11, r22	; 17
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  1aa:	80 e0       	ldi	r24, 0x00	; 0
  1ac:	08 95       	ret
-		   break;
-	    }	
-	} 
-	else
-	{
-		ErrorStatus = DIO_NOK;
  1ae:	81 e0       	ldi	r24, 0x01	; 1
  1b0:	08 95       	ret
  1b2:	81 e0       	ldi	r24, 0x01	; 1
  1b4:	08 95       	ret
  1b6:	81 e0       	ldi	r24, 0x01	; 1
  1b8:	08 95       	ret
-
-
-
-DIO_ERRORSTATUS DIO_SetPinDirection(u8 PortId,u8 PinId,u8 PInDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;     
  1ba:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  1bc:	08 95       	ret
 
 000001be <DIO_SetPinValue>:
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
-	if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7) && (PinValue<=DIO_PIN_HIGH))
  1be:	84 30       	cpi	r24, 0x04	; 4
  1c0:	08 f0       	brcs	.+2      	; 0x1c4 <DIO_SetPinValue+0x6>
  1c2:	8b c0       	rjmp	.+278    	; 0x2da <DIO_SetPinValue+0x11c>
@@ -379,8 +255,6 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  1ca:	42 30       	cpi	r20, 0x02	; 2
  1cc:	08 f0       	brcs	.+2      	; 0x1d0 <DIO_SetPinValue+0x12>
  1ce:	89 c0       	rjmp	.+274    	; 0x2e2 <DIO_SetPinValue+0x124>
-	{
-			switch (PortId)
  1d0:	81 30       	cpi	r24, 0x01	; 1
  1d2:	41 f1       	breq	.+80     	; 0x224 <DIO_SetPinValue+0x66>
  1d4:	81 30       	cpi	r24, 0x01	; 1
@@ -392,9 +266,6 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  1e0:	09 f0       	breq	.+2      	; 0x1e4 <DIO_SetPinValue+0x26>
  1e2:	81 c0       	rjmp	.+258    	; 0x2e6 <DIO_SetPinValue+0x128>
  1e4:	5b c0       	rjmp	.+182    	; 0x29c <DIO_SetPinValue+0xde>
-			{
-				case DIO_PORTA:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTA_REG,PinId)) : (CLR_BIT(PORTA_REG,PinId)) ;
  1e6:	41 30       	cpi	r20, 0x01	; 1
  1e8:	71 f4       	brne	.+28     	; 0x206 <DIO_SetPinValue+0x48>
  1ea:	2b b3       	in	r18, 0x1b	; 27
@@ -409,20 +280,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  1fc:	ba 01       	movw	r22, r20
  1fe:	62 2b       	or	r22, r18
  200:	6b bb       	out	0x1b, r22	; 27
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  202:	80 e0       	ldi	r24, 0x00	; 0
  204:	08 95       	ret
-	if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7) && (PinValue<=DIO_PIN_HIGH))
-	{
-			switch (PortId)
-			{
-				case DIO_PORTA:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTA_REG,PinId)) : (CLR_BIT(PORTA_REG,PinId)) ;
  206:	2b b3       	in	r18, 0x1b	; 27
  208:	81 e0       	ldi	r24, 0x01	; 1
  20a:	90 e0       	ldi	r25, 0x00	; 0
@@ -436,20 +295,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  21a:	60 95       	com	r22
  21c:	62 23       	and	r22, r18
  21e:	6b bb       	out	0x1b, r22	; 27
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  220:	80 e0       	ldi	r24, 0x00	; 0
  222:	08 95       	ret
-				case DIO_PORTA:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTA_REG,PinId)) : (CLR_BIT(PORTA_REG,PinId)) ;
-			    break;
-			    
-			    case DIO_PORTB:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTB_REG,PinId)) : (CLR_BIT(PORTB_REG,PinId)) ;
  224:	41 30       	cpi	r20, 0x01	; 1
  226:	69 f4       	brne	.+26     	; 0x242 <DIO_SetPinValue+0x84>
  228:	48 b3       	in	r20, 0x18	; 24
@@ -463,20 +310,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  238:	e2 f7       	brpl	.-8      	; 0x232 <DIO_SetPinValue+0x74>
  23a:	84 2b       	or	r24, r20
  23c:	88 bb       	out	0x18, r24	; 24
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  23e:	80 e0       	ldi	r24, 0x00	; 0
  240:	08 95       	ret
-				case DIO_PORTA:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTA_REG,PinId)) : (CLR_BIT(PORTA_REG,PinId)) ;
-			    break;
-			    
-			    case DIO_PORTB:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTB_REG,PinId)) : (CLR_BIT(PORTB_REG,PinId)) ;
  242:	28 b3       	in	r18, 0x18	; 24
  244:	81 e0       	ldi	r24, 0x01	; 1
  246:	90 e0       	ldi	r25, 0x00	; 0
@@ -490,20 +325,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  256:	60 95       	com	r22
  258:	62 23       	and	r22, r18
  25a:	68 bb       	out	0x18, r22	; 24
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  25c:	80 e0       	ldi	r24, 0x00	; 0
  25e:	08 95       	ret
-			    case DIO_PORTB:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTB_REG,PinId)) : (CLR_BIT(PORTB_REG,PinId)) ;
-			    break;
-			    
-			    case DIO_PORTC:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTC_REG,PinId)) : (CLR_BIT(PORTC_REG,PinId)) ;
  260:	41 30       	cpi	r20, 0x01	; 1
  262:	69 f4       	brne	.+26     	; 0x27e <DIO_SetPinValue+0xc0>
  264:	45 b3       	in	r20, 0x15	; 21
@@ -517,20 +340,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  274:	e2 f7       	brpl	.-8      	; 0x26e <DIO_SetPinValue+0xb0>
  276:	84 2b       	or	r24, r20
  278:	85 bb       	out	0x15, r24	; 21
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  27a:	80 e0       	ldi	r24, 0x00	; 0
  27c:	08 95       	ret
-			    case DIO_PORTB:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTB_REG,PinId)) : (CLR_BIT(PORTB_REG,PinId)) ;
-			    break;
-			    
-			    case DIO_PORTC:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTC_REG,PinId)) : (CLR_BIT(PORTC_REG,PinId)) ;
  27e:	25 b3       	in	r18, 0x15	; 21
  280:	81 e0       	ldi	r24, 0x01	; 1
  282:	90 e0       	ldi	r25, 0x00	; 0
@@ -544,20 +355,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  292:	60 95       	com	r22
  294:	62 23       	and	r22, r18
  296:	65 bb       	out	0x15, r22	; 21
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  298:	80 e0       	ldi	r24, 0x00	; 0
  29a:	08 95       	ret
-			    case DIO_PORTC:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTC_REG,PinId)) : (CLR_BIT(PORTC_REG,PinId)) ;
-			    break;
-			    
-			    case DIO_PORTD:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTD_REG,PinId)) : (CLR_BIT(PORTD_REG,PinId)) ;
  29c:	41 30       	cpi	r20, 0x01	; 1
  29e:	71 f4       	brne	.+28     	; 0x2bc <DIO_SetPinValue+0xfe>
  2a0:	22 b3       	in	r18, 0x12	; 18
@@ -572,20 +371,8 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  2b2:	ba 01       	movw	r22, r20
  2b4:	62 2b       	or	r22, r18
  2b6:	62 bb       	out	0x12, r22	; 18
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  2b8:	80 e0       	ldi	r24, 0x00	; 0
  2ba:	08 95       	ret
-			    case DIO_PORTC:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTC_REG,PinId)) : (CLR_BIT(PORTC_REG,PinId)) ;
-			    break;
-			    
-			    case DIO_PORTD:
-			    (DIO_PIN_HIGH == PinValue ) ? (SET_BIT(PORTD_REG,PinId)) : (CLR_BIT(PORTD_REG,PinId)) ;
  2bc:	22 b3       	in	r18, 0x12	; 18
  2be:	81 e0       	ldi	r24, 0x01	; 1
  2c0:	90 e0       	ldi	r25, 0x00	; 0
@@ -599,55 +386,24 @@ DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
  2d0:	60 95       	com	r22
  2d2:	62 23       	and	r22, r18
  2d4:	62 bb       	out	0x12, r22	; 18
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  2d6:	80 e0       	ldi	r24, 0x00	; 0
  2d8:	08 95       	ret
-			    break;
-			}	
-		} 
-	else
-	{
-		ErrorStatus = DIO_NOK;
  2da:	81 e0       	ldi	r24, 0x01	; 1
  2dc:	08 95       	ret
  2de:	81 e0       	ldi	r24, 0x01	; 1
  2e0:	08 95       	ret
  2e2:	81 e0       	ldi	r24, 0x01	; 1
  2e4:	08 95       	ret
-	return ErrorStatus;
-}
-
-DIO_ERRORSTATUS DIO_SetPinValue(u8 PortId,u8 PinId,u8 PinValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;
  2e6:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  2e8:	08 95       	ret
 
 000002ea <DIO_TogglePinValue>:
-	
-DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or not 
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;              
-	if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7))  //edit all
  2ea:	84 30       	cpi	r24, 0x04	; 4
  2ec:	08 f0       	brcs	.+2      	; 0x2f0 <DIO_TogglePinValue+0x6>
  2ee:	45 c0       	rjmp	.+138    	; 0x37a <DIO_TogglePinValue+0x90>
  2f0:	68 30       	cpi	r22, 0x08	; 8
  2f2:	08 f0       	brcs	.+2      	; 0x2f6 <DIO_TogglePinValue+0xc>
  2f4:	44 c0       	rjmp	.+136    	; 0x37e <DIO_TogglePinValue+0x94>
-	{
-		switch (PortId)
  2f6:	81 30       	cpi	r24, 0x01	; 1
  2f8:	b1 f0       	breq	.+44     	; 0x326 <DIO_TogglePinValue+0x3c>
  2fa:	81 30       	cpi	r24, 0x01	; 1
@@ -658,9 +414,6 @@ DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or no
  304:	09 f0       	breq	.+2      	; 0x308 <DIO_TogglePinValue+0x1e>
  306:	3d c0       	rjmp	.+122    	; 0x382 <DIO_TogglePinValue+0x98>
  308:	2a c0       	rjmp	.+84     	; 0x35e <DIO_TogglePinValue+0x74>
-		{
-			case DIO_PORTA:
-			TGL_BIT(PORTA_REG,PinId);
  30a:	2b b3       	in	r18, 0x1b	; 27
  30c:	81 e0       	ldi	r24, 0x01	; 1
  30e:	90 e0       	ldi	r25, 0x00	; 0
@@ -673,23 +426,8 @@ DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or no
  31c:	ba 01       	movw	r22, r20
  31e:	62 27       	eor	r22, r18
  320:	6b bb       	out	0x1b, r22	; 27
-	return ErrorStatus;
-}
-	
-DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or not 
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;              
  322:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		switch (PortId)
-		{
-			case DIO_PORTA:
-			TGL_BIT(PORTA_REG,PinId);
-			break;
  324:	08 95       	ret
-			
-			case DIO_PORTB:
-			TGL_BIT(PORTB_REG,PinId);
  326:	28 b3       	in	r18, 0x18	; 24
  328:	81 e0       	ldi	r24, 0x01	; 1
  32a:	90 e0       	ldi	r25, 0x00	; 0
@@ -702,23 +440,8 @@ DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or no
  338:	ba 01       	movw	r22, r20
  33a:	62 27       	eor	r22, r18
  33c:	68 bb       	out	0x18, r22	; 24
-	return ErrorStatus;
-}
-	
-DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or not 
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;              
  33e:	80 e0       	ldi	r24, 0x00	; 0
-			TGL_BIT(PORTA_REG,PinId);
-			break;
-			
-			case DIO_PORTB:
-			TGL_BIT(PORTB_REG,PinId);
-			break;
  340:	08 95       	ret
-			
-			case DIO_PORTC:
-			TGL_BIT(PORTC_REG,PinId);
  342:	25 b3       	in	r18, 0x15	; 21
  344:	81 e0       	ldi	r24, 0x01	; 1
  346:	90 e0       	ldi	r25, 0x00	; 0
@@ -731,23 +454,8 @@ DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or no
  354:	ba 01       	movw	r22, r20
  356:	62 27       	eor	r22, r18
  358:	65 bb       	out	0x15, r22	; 21
-	return ErrorStatus;
-}
-	
-DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or not 
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;              
  35a:	80 e0       	ldi	r24, 0x00	; 0
-			TGL_BIT(PORTB_REG,PinId);
-			break;
-			
-			case DIO_PORTC:
-			TGL_BIT(PORTC_REG,PinId);
-			break;
  35c:	08 95       	ret
-			
-			case DIO_PORTD:
-			TGL_BIT(PORTD_REG,PinId);
  35e:	22 b3       	in	r18, 0x12	; 18
  360:	81 e0       	ldi	r24, 0x01	; 1
  362:	90 e0       	ldi	r25, 0x00	; 0
@@ -760,51 +468,16 @@ DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or no
  370:	ba 01       	movw	r22, r20
  372:	62 27       	eor	r22, r18
  374:	62 bb       	out	0x12, r22	; 18
-	return ErrorStatus;
-}
-	
-DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or not 
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;              
  376:	80 e0       	ldi	r24, 0x00	; 0
-			TGL_BIT(PORTC_REG,PinId);
-			break;
-			
-			case DIO_PORTD:
-			TGL_BIT(PORTD_REG,PinId);
-			break;
  378:	08 95       	ret
-		}
-	} 
-	else
-	{
-		ErrorStatus = DIO_NOK;
  37a:	81 e0       	ldi	r24, 0x01	; 1
  37c:	08 95       	ret
  37e:	81 e0       	ldi	r24, 0x01	; 1
  380:	08 95       	ret
-	return ErrorStatus;
-}
-	
-DIO_ERRORSTATUS DIO_TogglePinValue    (u8 PortId ,u8 PinId) //To Test Work Or not 
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK ;              
  382:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  384:	08 95       	ret
 
 00000386 <DIO_ReadValue>:
-	
-	
-DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7) && (PinValue!=NULL)) //wild pointer 
  386:	84 30       	cpi	r24, 0x04	; 4
  388:	08 f0       	brcs	.+2      	; 0x38c <DIO_ReadValue+0x6>
  38a:	49 c0       	rjmp	.+146    	; 0x41e <DIO_ReadValue+0x98>
@@ -815,8 +488,6 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  394:	51 05       	cpc	r21, r1
  396:	09 f4       	brne	.+2      	; 0x39a <DIO_ReadValue+0x14>
  398:	46 c0       	rjmp	.+140    	; 0x426 <DIO_ReadValue+0xa0>
-	{
-		switch (PortId)
  39a:	81 30       	cpi	r24, 0x01	; 1
  39c:	b1 f0       	breq	.+44     	; 0x3ca <DIO_ReadValue+0x44>
  39e:	81 30       	cpi	r24, 0x01	; 1
@@ -827,9 +498,6 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  3a8:	09 f0       	breq	.+2      	; 0x3ac <DIO_ReadValue+0x26>
  3aa:	3f c0       	rjmp	.+126    	; 0x42a <DIO_ReadValue+0xa4>
  3ac:	2a c0       	rjmp	.+84     	; 0x402 <DIO_ReadValue+0x7c>
-		{
-			case DIO_PORTA:
-			*PinValue= GET_BIT(PINA_REG,PinId);
  3ae:	89 b3       	in	r24, 0x19	; 25
  3b0:	90 e0       	ldi	r25, 0x00	; 0
  3b2:	9c 01       	movw	r18, r24
@@ -842,23 +510,8 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  3c0:	61 70       	andi	r22, 0x01	; 1
  3c2:	fa 01       	movw	r30, r20
  3c4:	60 83       	st	Z, r22
-}
-	
-	
-DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  3c6:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		switch (PortId)
-		{
-			case DIO_PORTA:
-			*PinValue= GET_BIT(PINA_REG,PinId);
-			break;
  3c8:	08 95       	ret
-			
-			case DIO_PORTB:
-			*PinValue= GET_BIT(PINB_REG,PinId);
  3ca:	86 b3       	in	r24, 0x16	; 22
  3cc:	90 e0       	ldi	r25, 0x00	; 0
  3ce:	9c 01       	movw	r18, r24
@@ -871,23 +524,8 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  3dc:	61 70       	andi	r22, 0x01	; 1
  3de:	fa 01       	movw	r30, r20
  3e0:	60 83       	st	Z, r22
-}
-	
-	
-DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  3e2:	80 e0       	ldi	r24, 0x00	; 0
-			*PinValue= GET_BIT(PINA_REG,PinId);
-			break;
-			
-			case DIO_PORTB:
-			*PinValue= GET_BIT(PINB_REG,PinId);
-			break;
  3e4:	08 95       	ret
-			
-			case DIO_PORTC:
-			*PinValue= GET_BIT(PINC_REG,PinId);
  3e6:	83 b3       	in	r24, 0x13	; 19
  3e8:	90 e0       	ldi	r25, 0x00	; 0
  3ea:	9c 01       	movw	r18, r24
@@ -900,23 +538,8 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  3f8:	61 70       	andi	r22, 0x01	; 1
  3fa:	fa 01       	movw	r30, r20
  3fc:	60 83       	st	Z, r22
-}
-	
-	
-DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  3fe:	80 e0       	ldi	r24, 0x00	; 0
-			*PinValue= GET_BIT(PINB_REG,PinId);
-			break;
-			
-			case DIO_PORTC:
-			*PinValue= GET_BIT(PINC_REG,PinId);
-			break;
  400:	08 95       	ret
-			
-			case DIO_PORTD:
-			*PinValue= GET_BIT(PIND_REG,PinId);
  402:	80 b3       	in	r24, 0x10	; 16
  404:	90 e0       	ldi	r25, 0x00	; 0
  406:	9c 01       	movw	r18, r24
@@ -929,60 +552,24 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  414:	61 70       	andi	r22, 0x01	; 1
  416:	fa 01       	movw	r30, r20
  418:	60 83       	st	Z, r22
-}
-	
-	
-DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  41a:	80 e0       	ldi	r24, 0x00	; 0
-			*PinValue= GET_BIT(PINC_REG,PinId);
-			break;
-			
-			case DIO_PORTD:
-			*PinValue= GET_BIT(PIND_REG,PinId);
-			break;
  41c:	08 95       	ret
-		}
-	} 
-	else
-	{
-		ErrorStatus = DIO_NOK;
  41e:	81 e0       	ldi	r24, 0x01	; 1
  420:	08 95       	ret
  422:	81 e0       	ldi	r24, 0x01	; 1
  424:	08 95       	ret
  426:	81 e0       	ldi	r24, 0x01	; 1
  428:	08 95       	ret
-}
-	
-	
-DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  42a:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  42c:	08 95       	ret
 
 0000042e <DIO_activePinInPullUpResistance>:
- 
- DIO_ERRORSTATUS  DIO_activePinInPullUpResistance ( u8 PortId ,u8 PinId)
-{
-	 DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	 if ((PortId <= DIO_PORTD) && (PinId <= DIO_PIN7))
  42e:	84 30       	cpi	r24, 0x04	; 4
  430:	08 f0       	brcs	.+2      	; 0x434 <DIO_activePinInPullUpResistance+0x6>
  432:	45 c0       	rjmp	.+138    	; 0x4be <DIO_activePinInPullUpResistance+0x90>
  434:	68 30       	cpi	r22, 0x08	; 8
  436:	08 f0       	brcs	.+2      	; 0x43a <DIO_activePinInPullUpResistance+0xc>
  438:	44 c0       	rjmp	.+136    	; 0x4c2 <DIO_activePinInPullUpResistance+0x94>
-	 {
-		 switch(PortId)
  43a:	81 30       	cpi	r24, 0x01	; 1
  43c:	b1 f0       	breq	.+44     	; 0x46a <DIO_activePinInPullUpResistance+0x3c>
  43e:	81 30       	cpi	r24, 0x01	; 1
@@ -993,9 +580,6 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  448:	09 f0       	breq	.+2      	; 0x44c <DIO_activePinInPullUpResistance+0x1e>
  44a:	3d c0       	rjmp	.+122    	; 0x4c6 <DIO_activePinInPullUpResistance+0x98>
  44c:	2a c0       	rjmp	.+84     	; 0x4a2 <DIO_activePinInPullUpResistance+0x74>
-		 {
-			 case DIO_PORTA:
-			 SET_BIT(PORTA_REG,PinId);
  44e:	2b b3       	in	r18, 0x1b	; 27
  450:	81 e0       	ldi	r24, 0x01	; 1
  452:	90 e0       	ldi	r25, 0x00	; 0
@@ -1008,23 +592,8 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  460:	ba 01       	movw	r22, r20
  462:	62 2b       	or	r22, r18
  464:	6b bb       	out	0x1b, r22	; 27
-	return ErrorStatus;
-}
- 
- DIO_ERRORSTATUS  DIO_activePinInPullUpResistance ( u8 PortId ,u8 PinId)
-{
-	 DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  466:	80 e0       	ldi	r24, 0x00	; 0
-	 {
-		 switch(PortId)
-		 {
-			 case DIO_PORTA:
-			 SET_BIT(PORTA_REG,PinId);
-			 break;
  468:	08 95       	ret
-			 
-			 case DIO_PORTB:
-			 SET_BIT(PORTB_REG,PinId);
  46a:	28 b3       	in	r18, 0x18	; 24
  46c:	81 e0       	ldi	r24, 0x01	; 1
  46e:	90 e0       	ldi	r25, 0x00	; 0
@@ -1037,23 +606,8 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  47c:	ba 01       	movw	r22, r20
  47e:	62 2b       	or	r22, r18
  480:	68 bb       	out	0x18, r22	; 24
-	return ErrorStatus;
-}
- 
- DIO_ERRORSTATUS  DIO_activePinInPullUpResistance ( u8 PortId ,u8 PinId)
-{
-	 DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  482:	80 e0       	ldi	r24, 0x00	; 0
-			 SET_BIT(PORTA_REG,PinId);
-			 break;
-			 
-			 case DIO_PORTB:
-			 SET_BIT(PORTB_REG,PinId);
-			 break;
  484:	08 95       	ret
-			 
-			 case DIO_PORTC:
-			 SET_BIT(PORTC_REG,PinId);
  486:	25 b3       	in	r18, 0x15	; 21
  488:	81 e0       	ldi	r24, 0x01	; 1
  48a:	90 e0       	ldi	r25, 0x00	; 0
@@ -1066,23 +620,8 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  498:	ba 01       	movw	r22, r20
  49a:	62 2b       	or	r22, r18
  49c:	65 bb       	out	0x15, r22	; 21
-	return ErrorStatus;
-}
- 
- DIO_ERRORSTATUS  DIO_activePinInPullUpResistance ( u8 PortId ,u8 PinId)
-{
-	 DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  49e:	80 e0       	ldi	r24, 0x00	; 0
-			 SET_BIT(PORTB_REG,PinId);
-			 break;
-			 
-			 case DIO_PORTC:
-			 SET_BIT(PORTC_REG,PinId);
-			 break;
  4a0:	08 95       	ret
-			 
-			 case DIO_PORTD:
-			 SET_BIT(PORTD_REG,PinId);
  4a2:	22 b3       	in	r18, 0x12	; 18
  4a4:	81 e0       	ldi	r24, 0x01	; 1
  4a6:	90 e0       	ldi	r25, 0x00	; 0
@@ -1095,55 +634,18 @@ DIO_ERRORSTATUS DIO_ReadValue (u8 PortId,u8 PinId , u8* PinValue )
  4b4:	ba 01       	movw	r22, r20
  4b6:	62 2b       	or	r22, r18
  4b8:	62 bb       	out	0x12, r22	; 18
-	return ErrorStatus;
-}
- 
- DIO_ERRORSTATUS  DIO_activePinInPullUpResistance ( u8 PortId ,u8 PinId)
-{
-	 DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  4ba:	80 e0       	ldi	r24, 0x00	; 0
-			 SET_BIT(PORTC_REG,PinId);
-			 break;
-			 
-			 case DIO_PORTD:
-			 SET_BIT(PORTD_REG,PinId);
-			 break;
  4bc:	08 95       	ret
-	      } 
-	 }	 
-	 else
-	 {
-		ErrorStatus = DIO_NOK;
  4be:	81 e0       	ldi	r24, 0x01	; 1
  4c0:	08 95       	ret
  4c2:	81 e0       	ldi	r24, 0x01	; 1
  4c4:	08 95       	ret
-	return ErrorStatus;
-}
- 
- DIO_ERRORSTATUS  DIO_activePinInPullUpResistance ( u8 PortId ,u8 PinId)
-{
-	 DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  4c6:	80 e0       	ldi	r24, 0x00	; 0
-	 else
-	 {
-		ErrorStatus = DIO_NOK;
-	 }
-	 return ErrorStatus;
-}
  4c8:	08 95       	ret
 
 000004ca <DIO_setPortDirection>:
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	if ( (PortId<=DIO_PORTD))
  4ca:	84 30       	cpi	r24, 0x04	; 4
  4cc:	a8 f5       	brcc	.+106    	; 0x538 <DIO_setPortDirection+0x6e>
-	{
-		switch(PortId)
  4ce:	81 30       	cpi	r24, 0x01	; 1
  4d0:	91 f0       	breq	.+36     	; 0x4f6 <DIO_setPortDirection+0x2c>
  4d2:	81 30       	cpi	r24, 0x01	; 1
@@ -1153,177 +655,58 @@ DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
  4da:	83 30       	cpi	r24, 0x03	; 3
  4dc:	79 f5       	brne	.+94     	; 0x53c <DIO_setPortDirection+0x72>
  4de:	21 c0       	rjmp	.+66     	; 0x522 <DIO_setPortDirection+0x58>
-		{
-			case DIO_PORTA:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRA_REG)):(CLR_REG(DDRA_REG));
  4e0:	6f 3f       	cpi	r22, 0xFF	; 255
  4e2:	29 f4       	brne	.+10     	; 0x4ee <DIO_setPortDirection+0x24>
  4e4:	8a b3       	in	r24, 0x1a	; 26
  4e6:	8f ef       	ldi	r24, 0xFF	; 255
  4e8:	8a bb       	out	0x1a, r24	; 26
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  4ea:	80 e0       	ldi	r24, 0x00	; 0
  4ec:	08 95       	ret
-	if ( (PortId<=DIO_PORTD))
-	{
-		switch(PortId)
-		{
-			case DIO_PORTA:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRA_REG)):(CLR_REG(DDRA_REG));
  4ee:	8a b3       	in	r24, 0x1a	; 26
  4f0:	1a ba       	out	0x1a, r1	; 26
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  4f2:	80 e0       	ldi	r24, 0x00	; 0
  4f4:	08 95       	ret
-			case DIO_PORTA:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRA_REG)):(CLR_REG(DDRA_REG));
-			break;
-			
-			case DIO_PORTB:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRB_REG)):(CLR_REG(DDRB_REG));
  4f6:	6f 3f       	cpi	r22, 0xFF	; 255
  4f8:	29 f4       	brne	.+10     	; 0x504 <DIO_setPortDirection+0x3a>
  4fa:	87 b3       	in	r24, 0x17	; 23
  4fc:	8f ef       	ldi	r24, 0xFF	; 255
  4fe:	87 bb       	out	0x17, r24	; 23
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  500:	80 e0       	ldi	r24, 0x00	; 0
  502:	08 95       	ret
-			case DIO_PORTA:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRA_REG)):(CLR_REG(DDRA_REG));
-			break;
-			
-			case DIO_PORTB:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRB_REG)):(CLR_REG(DDRB_REG));
  504:	87 b3       	in	r24, 0x17	; 23
  506:	17 ba       	out	0x17, r1	; 23
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  508:	80 e0       	ldi	r24, 0x00	; 0
  50a:	08 95       	ret
-			case DIO_PORTB:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRB_REG)):(CLR_REG(DDRB_REG));
-			break;
-			
-			case DIO_PORTC:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRC_REG)):(CLR_REG(DDRC_REG));
  50c:	6f 3f       	cpi	r22, 0xFF	; 255
  50e:	29 f4       	brne	.+10     	; 0x51a <DIO_setPortDirection+0x50>
  510:	84 b3       	in	r24, 0x14	; 20
  512:	8f ef       	ldi	r24, 0xFF	; 255
  514:	84 bb       	out	0x14, r24	; 20
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  516:	80 e0       	ldi	r24, 0x00	; 0
  518:	08 95       	ret
-			case DIO_PORTB:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRB_REG)):(CLR_REG(DDRB_REG));
-			break;
-			
-			case DIO_PORTC:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRC_REG)):(CLR_REG(DDRC_REG));
  51a:	84 b3       	in	r24, 0x14	; 20
  51c:	14 ba       	out	0x14, r1	; 20
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  51e:	80 e0       	ldi	r24, 0x00	; 0
  520:	08 95       	ret
-			case DIO_PORTC:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRC_REG)):(CLR_REG(DDRC_REG));
-			break;
-			
-			case DIO_PORTD:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRD_REG)):(CLR_REG(DDRD_REG));
  522:	6f 3f       	cpi	r22, 0xFF	; 255
  524:	29 f4       	brne	.+10     	; 0x530 <DIO_setPortDirection+0x66>
  526:	81 b3       	in	r24, 0x11	; 17
  528:	8f ef       	ldi	r24, 0xFF	; 255
  52a:	81 bb       	out	0x11, r24	; 17
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  52c:	80 e0       	ldi	r24, 0x00	; 0
  52e:	08 95       	ret
-			case DIO_PORTC:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRC_REG)):(CLR_REG(DDRC_REG));
-			break;
-			
-			case DIO_PORTD:
-			(DIO_PORT_OUTPUT == PortDirection)?(SET_REG(DDRD_REG)):(CLR_REG(DDRD_REG));
  530:	81 b3       	in	r24, 0x11	; 17
  532:	11 ba       	out	0x11, r1	; 17
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  534:	80 e0       	ldi	r24, 0x00	; 0
  536:	08 95       	ret
-			break;
-		}
-	} 
-	else
-	{
-		ErrorStatus = DIO_NOK;
  538:	81 e0       	ldi	r24, 0x01	; 1
  53a:	08 95       	ret
-
-
-
-DIO_ERRORSTATUS DIO_setPortDirection(u8 PortId, u8 PortDirection)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  53c:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  53e:	08 95       	ret
 
 00000540 <DIO_setPortValue>:
-
-
-DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	if ( (PortId<=DIO_PORTD) )
  540:	84 30       	cpi	r24, 0x04	; 4
  542:	a8 f4       	brcc	.+42     	; 0x56e <DIO_setPortValue+0x2e>
-	{
-		switch(PortId)
  544:	81 30       	cpi	r24, 0x01	; 1
  546:	51 f0       	breq	.+20     	; 0x55c <DIO_setPortValue+0x1c>
  548:	81 30       	cpi	r24, 0x01	; 1
@@ -1333,114 +716,29 @@ DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
  550:	83 30       	cpi	r24, 0x03	; 3
  552:	79 f4       	brne	.+30     	; 0x572 <DIO_setPortValue+0x32>
  554:	09 c0       	rjmp	.+18     	; 0x568 <DIO_setPortValue+0x28>
-		{
-			case DIO_PORTA:
-			PORTA_REG=PortValue;
  556:	6b bb       	out	0x1b, r22	; 27
-}
-
-
-DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  558:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		switch(PortId)
-		{
-			case DIO_PORTA:
-			PORTA_REG=PortValue;
-			break;
  55a:	08 95       	ret
-			
-			case DIO_PORTB:
-			PORTB_REG=PortValue;
  55c:	68 bb       	out	0x18, r22	; 24
-}
-
-
-DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  55e:	80 e0       	ldi	r24, 0x00	; 0
-			PORTA_REG=PortValue;
-			break;
-			
-			case DIO_PORTB:
-			PORTB_REG=PortValue;
-			break;
  560:	08 95       	ret
-			
-			case DIO_PORTC:
-			PORTC_REG=PortValue;
  562:	65 bb       	out	0x15, r22	; 21
-}
-
-
-DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  564:	80 e0       	ldi	r24, 0x00	; 0
-			PORTB_REG=PortValue;
-			break;
-			
-			case DIO_PORTC:
-			PORTC_REG=PortValue;
-			break;
  566:	08 95       	ret
-			
-			case DIO_PORTD:
-			PORTD_REG=PortValue;
  568:	62 bb       	out	0x12, r22	; 18
-}
-
-
-DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  56a:	80 e0       	ldi	r24, 0x00	; 0
-			PORTC_REG=PortValue;
-			break;
-			
-			case DIO_PORTD:
-			PORTD_REG=PortValue;
-			break;
  56c:	08 95       	ret
-		}
-	}
-	else
-	{
-	ErrorStatus = DIO_NOK;
  56e:	81 e0       	ldi	r24, 0x01	; 1
  570:	08 95       	ret
-}
-
-
-DIO_ERRORSTATUS DIO_setPortValue (u8 PortId, u8 PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  572:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-	ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  574:	08 95       	ret
 
 00000576 <DIO_getPortValue>:
-
-
-DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	if ( (PortId<=DIO_PORTD) && (PortValue!=NULL) )
  576:	84 30       	cpi	r24, 0x04	; 4
  578:	00 f5       	brcc	.+64     	; 0x5ba <DIO_getPortValue+0x44>
  57a:	61 15       	cp	r22, r1
  57c:	71 05       	cpc	r23, r1
  57e:	f9 f0       	breq	.+62     	; 0x5be <DIO_getPortValue+0x48>
-	{
-		switch(PortId)
  580:	81 30       	cpi	r24, 0x01	; 1
  582:	61 f0       	breq	.+24     	; 0x59c <DIO_getPortValue+0x26>
  584:	81 30       	cpi	r24, 0x01	; 1
@@ -1450,121 +748,36 @@ DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
  58c:	83 30       	cpi	r24, 0x03	; 3
  58e:	c9 f4       	brne	.+50     	; 0x5c2 <DIO_getPortValue+0x4c>
  590:	0f c0       	rjmp	.+30     	; 0x5b0 <DIO_getPortValue+0x3a>
-		{
-			case DIO_PORTA:
-			*PortValue =PORTA_REG;
  592:	8b b3       	in	r24, 0x1b	; 27
  594:	fb 01       	movw	r30, r22
  596:	80 83       	st	Z, r24
-}
-
-
-DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  598:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		switch(PortId)
-		{
-			case DIO_PORTA:
-			*PortValue =PORTA_REG;
-			break;
  59a:	08 95       	ret
-			
-			case DIO_PORTB:
-		    *PortValue =PORTB_REG;
  59c:	88 b3       	in	r24, 0x18	; 24
  59e:	fb 01       	movw	r30, r22
  5a0:	80 83       	st	Z, r24
-}
-
-
-DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5a2:	80 e0       	ldi	r24, 0x00	; 0
-			*PortValue =PORTA_REG;
-			break;
-			
-			case DIO_PORTB:
-		    *PortValue =PORTB_REG;
-			break;
  5a4:	08 95       	ret
-			
-			case DIO_PORTC:
-			*PortValue =PORTC_REG;
  5a6:	85 b3       	in	r24, 0x15	; 21
  5a8:	fb 01       	movw	r30, r22
  5aa:	80 83       	st	Z, r24
-}
-
-
-DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5ac:	80 e0       	ldi	r24, 0x00	; 0
-		    *PortValue =PORTB_REG;
-			break;
-			
-			case DIO_PORTC:
-			*PortValue =PORTC_REG;
-			break;
  5ae:	08 95       	ret
-			
-			case DIO_PORTD:
-			*PortValue =PORTD_REG;
  5b0:	82 b3       	in	r24, 0x12	; 18
  5b2:	fb 01       	movw	r30, r22
  5b4:	80 83       	st	Z, r24
-}
-
-
-DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5b6:	80 e0       	ldi	r24, 0x00	; 0
-			*PortValue =PORTC_REG;
-			break;
-			
-			case DIO_PORTD:
-			*PortValue =PORTD_REG;
-			break;
  5b8:	08 95       	ret
-		}
-	}
-	else
-	{
-		ErrorStatus = DIO_NOK;
  5ba:	81 e0       	ldi	r24, 0x01	; 1
  5bc:	08 95       	ret
  5be:	81 e0       	ldi	r24, 0x01	; 1
  5c0:	08 95       	ret
-}
-
-
-DIO_ERRORSTATUS DIO_getPortValue(u8 PortId, u8* PortValue)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5c2:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  5c4:	08 95       	ret
 
 000005c6 <DIO_togglePortValue>:
-
-
-DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	if ( (PortId<=DIO_PORTD))
  5c6:	84 30       	cpi	r24, 0x04	; 4
  5c8:	e8 f4       	brcc	.+58     	; 0x604 <DIO_togglePortValue+0x3e>
-	{
-		switch(PortId)
  5ca:	81 30       	cpi	r24, 0x01	; 1
  5cc:	61 f0       	breq	.+24     	; 0x5e6 <DIO_togglePortValue+0x20>
  5ce:	81 30       	cpi	r24, 0x01	; 1
@@ -1574,119 +787,34 @@ DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
  5d6:	83 30       	cpi	r24, 0x03	; 3
  5d8:	b9 f4       	brne	.+46     	; 0x608 <DIO_togglePortValue+0x42>
  5da:	0f c0       	rjmp	.+30     	; 0x5fa <DIO_togglePortValue+0x34>
-		{
-			case DIO_PORTA:
-			TGL_REG(PORTA_REG);
  5dc:	8b b3       	in	r24, 0x1b	; 27
  5de:	80 95       	com	r24
  5e0:	8b bb       	out	0x1b, r24	; 27
-}
-
-
-DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5e2:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		switch(PortId)
-		{
-			case DIO_PORTA:
-			TGL_REG(PORTA_REG);
-			break;
  5e4:	08 95       	ret
-			
-			case DIO_PORTB:
-			TGL_REG(PORTB_REG);
  5e6:	88 b3       	in	r24, 0x18	; 24
  5e8:	80 95       	com	r24
  5ea:	88 bb       	out	0x18, r24	; 24
-}
-
-
-DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5ec:	80 e0       	ldi	r24, 0x00	; 0
-			TGL_REG(PORTA_REG);
-			break;
-			
-			case DIO_PORTB:
-			TGL_REG(PORTB_REG);
-			break;
  5ee:	08 95       	ret
-			
-			case DIO_PORTC:
-			TGL_REG(PORTC_REG);
  5f0:	85 b3       	in	r24, 0x15	; 21
  5f2:	80 95       	com	r24
  5f4:	85 bb       	out	0x15, r24	; 21
-}
-
-
-DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  5f6:	80 e0       	ldi	r24, 0x00	; 0
-			TGL_REG(PORTB_REG);
-			break;
-			
-			case DIO_PORTC:
-			TGL_REG(PORTC_REG);
-			break;
  5f8:	08 95       	ret
-			
-			case DIO_PORTD:
-			TGL_REG(PORTD_REG);
  5fa:	82 b3       	in	r24, 0x12	; 18
  5fc:	80 95       	com	r24
  5fe:	82 bb       	out	0x12, r24	; 18
-}
-
-
-DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  600:	80 e0       	ldi	r24, 0x00	; 0
-			TGL_REG(PORTC_REG);
-			break;
-			
-			case DIO_PORTD:
-			TGL_REG(PORTD_REG);
-			break;
  602:	08 95       	ret
-		}
-	}
-	else
-	{
-		ErrorStatus = DIO_NOK;
  604:	81 e0       	ldi	r24, 0x01	; 1
  606:	08 95       	ret
-}
-
-
-DIO_ERRORSTATUS DIO_togglePortValue (u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  608:	80 e0       	ldi	r24, 0x00	; 0
-	else
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-}
  60a:	08 95       	ret
 
 0000060c <DIO_activePortInPullUpResistance>:
-
-
-DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
-	if ( (PortId<=DIO_PORTD))
  60c:	84 30       	cpi	r24, 0x04	; 4
  60e:	e8 f4       	brcc	.+58     	; 0x64a <DIO_activePortInPullUpResistance+0x3e>
-	{
-		switch(PortId)
  610:	81 30       	cpi	r24, 0x01	; 1
  612:	61 f0       	breq	.+24     	; 0x62c <DIO_activePortInPullUpResistance+0x20>
  614:	81 30       	cpi	r24, 0x01	; 1
@@ -1696,325 +824,136 @@ DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
  61c:	83 30       	cpi	r24, 0x03	; 3
  61e:	b9 f4       	brne	.+46     	; 0x64e <DIO_activePortInPullUpResistance+0x42>
  620:	0f c0       	rjmp	.+30     	; 0x640 <DIO_activePortInPullUpResistance+0x34>
-		{
-			case DIO_PORTA:
-			SET_REG(PORTA_REG);
  622:	8b b3       	in	r24, 0x1b	; 27
  624:	8f ef       	ldi	r24, 0xFF	; 255
  626:	8b bb       	out	0x1b, r24	; 27
-}
-
-
-DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  628:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		switch(PortId)
-		{
-			case DIO_PORTA:
-			SET_REG(PORTA_REG);
-			break;
  62a:	08 95       	ret
-			
-			case DIO_PORTB:
-			SET_REG(PORTB_REG);
  62c:	88 b3       	in	r24, 0x18	; 24
  62e:	8f ef       	ldi	r24, 0xFF	; 255
  630:	88 bb       	out	0x18, r24	; 24
-}
-
-
-DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  632:	80 e0       	ldi	r24, 0x00	; 0
-			SET_REG(PORTA_REG);
-			break;
-			
-			case DIO_PORTB:
-			SET_REG(PORTB_REG);
-			break;
  634:	08 95       	ret
-			
-			case DIO_PORTC:
-			SET_REG(PORTC_REG);
  636:	85 b3       	in	r24, 0x15	; 21
  638:	8f ef       	ldi	r24, 0xFF	; 255
  63a:	85 bb       	out	0x15, r24	; 21
-}
-
-
-DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  63c:	80 e0       	ldi	r24, 0x00	; 0
-			SET_REG(PORTB_REG);
-			break;
-			
-			case DIO_PORTC:
-			SET_REG(PORTC_REG);
-			break;
  63e:	08 95       	ret
-			
-			case DIO_PORTD:
-			SET_REG(PORTD_REG);
  640:	82 b3       	in	r24, 0x12	; 18
  642:	8f ef       	ldi	r24, 0xFF	; 255
  644:	82 bb       	out	0x12, r24	; 18
-}
-
-
-DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  646:	80 e0       	ldi	r24, 0x00	; 0
-			SET_REG(PORTC_REG);
-			break;
-			
-			case DIO_PORTD:
-			SET_REG(PORTD_REG);
-			break;
  648:	08 95       	ret
-		}
-	}
-	else
-	{
-		ErrorStatus = DIO_NOK;
  64a:	81 e0       	ldi	r24, 0x01	; 1
  64c:	08 95       	ret
-}
-
-
-DIO_ERRORSTATUS DIO_activePortInPullUpResistance(u8 PortId)
-{
-	DIO_ERRORSTATUS ErrorStatus = DIO_OK;
  64e:	80 e0       	ldi	r24, 0x00	; 0
-	{
-		ErrorStatus = DIO_NOK;
-	}
-	return ErrorStatus;
-	
-}
  650:	08 95       	ret
 
 00000652 <LED_init>:
-#include "LED_config.h"
-
-
-void LED_init(u8 LedPort,u8 LedPin)
-{
-	if (LedPort <=3 && LedPin<=7)
  652:	84 30       	cpi	r24, 0x04	; 4
  654:	28 f4       	brcc	.+10     	; 0x660 <LED_init+0xe>
  656:	68 30       	cpi	r22, 0x08	; 8
  658:	18 f4       	brcc	.+6      	; 0x660 <LED_init+0xe>
-	{
-		DIO_SetPinDirection(LedPort,LedPin,DIO_PIN_OUTPUT);
  65a:	41 e0       	ldi	r20, 0x01	; 1
  65c:	0e 94 49 00 	call	0x92	; 0x92 <DIO_SetPinDirection>
  660:	08 95       	ret
 
 00000662 <LED_TurnON>:
-}
-
-
-void LED_TurnON(u8 LedPort,u8 LedPin)
-{
-	if (LedPort <=3 && LedPin<=7)
  662:	84 30       	cpi	r24, 0x04	; 4
  664:	28 f4       	brcc	.+10     	; 0x670 <LED_TurnON+0xe>
  666:	68 30       	cpi	r22, 0x08	; 8
  668:	18 f4       	brcc	.+6      	; 0x670 <LED_TurnON+0xe>
-	{
-		DIO_SetPinValue(LedPort,LedPin,DIO_PIN_HIGH);
  66a:	41 e0       	ldi	r20, 0x01	; 1
  66c:	0e 94 df 00 	call	0x1be	; 0x1be <DIO_SetPinValue>
  670:	08 95       	ret
 
 00000672 <LED_TurnOFF>:
-}
-
-
-void LED_TurnOFF(u8 LedPort,u8 LedPin)
-{
-	if (LedPort <=3 && LedPin<=7)
  672:	84 30       	cpi	r24, 0x04	; 4
  674:	28 f4       	brcc	.+10     	; 0x680 <LED_TurnOFF+0xe>
  676:	68 30       	cpi	r22, 0x08	; 8
  678:	18 f4       	brcc	.+6      	; 0x680 <LED_TurnOFF+0xe>
-	{
-		DIO_SetPinValue(LedPort,LedPin,DIO_PIN_LOW);
  67a:	40 e0       	ldi	r20, 0x00	; 0
  67c:	0e 94 df 00 	call	0x1be	; 0x1be <DIO_SetPinValue>
  680:	08 95       	ret
 
 00000682 <LED_Toggle>:
-}
-
-
-void LED_Toggle(u8 LedPort,u8 LedPin)
-{
-	 if (LedPort <=3 && LedPin<=7)
  682:	84 30       	cpi	r24, 0x04	; 4
  684:	20 f4       	brcc	.+8      	; 0x68e <LED_Toggle+0xc>
  686:	68 30       	cpi	r22, 0x08	; 8
  688:	10 f4       	brcc	.+4      	; 0x68e <LED_Toggle+0xc>
-	 {
-		DIO_TogglePinValue(LedPort,LedPin);
  68a:	0e 94 75 01 	call	0x2ea	; 0x2ea <DIO_TogglePinValue>
  68e:	08 95       	ret
 
 00000690 <SPI_init>:
-	SET_BIT(SPCR,MSTR);  //Select Master 
-	SET_BIT(SPCR,DORD);  //Select LSB
-	SET_BIT(SPCR,SPE);   //Enable SPI 
-	
-	#elif SPI_MODE == SPI_Slave
-	SET_BIT(SPCR,SPIE);  //Enaple Interrupt
  690:	6f 9a       	sbi	0x0d, 7	; 13
-	
-	SET_BIT(SPCR,CPHA);    //Select Phase
  692:	6a 9a       	sbi	0x0d, 2	; 13
-	SET_BIT(SPCR,CPOL);    //Select Polarity
  694:	6b 9a       	sbi	0x0d, 3	; 13
-	
-	CLR_BIT(SPCR,MSTR);   //Select Slave
  696:	6c 98       	cbi	0x0d, 4	; 13
-	SET_BIT(SPCR,DORD);   //Select LSB
  698:	6d 9a       	sbi	0x0d, 5	; 13
-	SET_BIT(SPCR,SPE);    //Enable SPI 
  69a:	6e 9a       	sbi	0x0d, 6	; 13
-	
-	#endif
-}
  69c:	08 95       	ret
 
 0000069e <SPI_Tranceive>:
-
-void SPI_Tranceive(u8 TxData,u8* RxData)
-{
-	if(RxData!=NULL)
  69e:	61 15       	cp	r22, r1
  6a0:	71 05       	cpc	r23, r1
  6a2:	49 f0       	breq	.+18     	; 0x6b6 <SPI_Tranceive+0x18>
-	{
-		while (1 == GET_BIT(SPSR,WCOL));
  6a4:	9e b1       	in	r25, 0x0e	; 14
  6a6:	96 fd       	sbrc	r25, 6
  6a8:	fd cf       	rjmp	.-6      	; 0x6a4 <SPI_Tranceive+0x6>
-		SPDR=TxData;
  6aa:	8f b9       	out	0x0f, r24	; 15
-		
-		while (0 == GET_BIT(SPSR,SPIF));
  6ac:	77 9b       	sbis	0x0e, 7	; 14
  6ae:	fe cf       	rjmp	.-4      	; 0x6ac <SPI_Tranceive+0xe>
-		*RxData=SPDR;
  6b0:	8f b1       	in	r24, 0x0f	; 15
  6b2:	fb 01       	movw	r30, r22
  6b4:	80 83       	st	Z, r24
  6b6:	08 95       	ret
 
 000006b8 <SPI_Receive>:
-	}
-}
-
-void SPI_Receive (u8* RxData)
-{
-	if(RxData!=NULL)
  6b8:	00 97       	sbiw	r24, 0x00	; 0
  6ba:	29 f0       	breq	.+10     	; 0x6c6 <SPI_Receive+0xe>
-	{
-		while (0 == GET_BIT(SPSR,SPIF));
  6bc:	77 9b       	sbis	0x0e, 7	; 14
  6be:	fe cf       	rjmp	.-4      	; 0x6bc <SPI_Receive+0x4>
-		*RxData=SPDR;
  6c0:	2f b1       	in	r18, 0x0f	; 15
  6c2:	fc 01       	movw	r30, r24
  6c4:	20 83       	st	Z, r18
  6c6:	08 95       	ret
 
 000006c8 <SPI_Transimite>:
-	}
-}
-
-void SPI_Transimite (u8 TxData)
-{
-	while (1 == GET_BIT(SPSR,WCOL));
  6c8:	9e b1       	in	r25, 0x0e	; 14
  6ca:	96 fd       	sbrc	r25, 6
  6cc:	fd cf       	rjmp	.-6      	; 0x6c8 <SPI_Transimite>
-	SPDR=TxData;
  6ce:	8f b9       	out	0x0f, r24	; 15
-}
  6d0:	08 95       	ret
 
 000006d2 <SPI_TransimiteString>:
-
-void SPI_TransimiteString(u8* TxData)
-{
  6d2:	0f 93       	push	r16
  6d4:	1f 93       	push	r17
  6d6:	cf 93       	push	r28
  6d8:	8c 01       	movw	r16, r24
- u8 Index=0;
- 
- while (TxData[Index]!='\0')		/* Send string till null */
  6da:	fc 01       	movw	r30, r24
  6dc:	80 81       	ld	r24, Z
  6de:	88 23       	and	r24, r24
  6e0:	51 f0       	breq	.+20     	; 0x6f6 <SPI_TransimiteString+0x24>
-	SPDR=TxData;
-}
-
-void SPI_TransimiteString(u8* TxData)
-{
- u8 Index=0;
  6e2:	c0 e0       	ldi	r28, 0x00	; 0
- 
- while (TxData[Index]!='\0')		/* Send string till null */
-	{
-		 SPI_Transimite(TxData[Index]);
  6e4:	0e 94 64 03 	call	0x6c8	; 0x6c8 <SPI_Transimite>
-		 Index++;
  6e8:	cf 5f       	subi	r28, 0xFF	; 255
-
-void SPI_TransimiteString(u8* TxData)
-{
- u8 Index=0;
- 
- while (TxData[Index]!='\0')		/* Send string till null */
  6ea:	f8 01       	movw	r30, r16
  6ec:	ec 0f       	add	r30, r28
  6ee:	f1 1d       	adc	r31, r1
  6f0:	80 81       	ld	r24, Z
  6f2:	88 23       	and	r24, r24
  6f4:	b9 f7       	brne	.-18     	; 0x6e4 <SPI_TransimiteString+0x12>
-	{
-		 SPI_Transimite(TxData[Index]);
-		 Index++;
-	}
-} 
  6f6:	cf 91       	pop	r28
  6f8:	1f 91       	pop	r17
  6fa:	0f 91       	pop	r16
  6fc:	08 95       	ret
 
 000006fe <SPI_SetCallBack>:
-
-void SPI_SetCallBack  (void(*PtrToFun)(void))
-{
-	Private_CallBackSPI=PtrToFun;
  6fe:	90 93 61 00 	sts	0x0061, r25
  702:	80 93 60 00 	sts	0x0060, r24
-}
  706:	08 95       	ret
 
 00000708 <__vector_12>:
-
-void  __vector_12(void) __attribute__((signal));
-void  __vector_12(void)
-{
  708:	1f 92       	push	r1
  70a:	0f 92       	push	r0
  70c:	0f b6       	in	r0, 0x3f	; 63
@@ -2032,15 +971,11 @@ void  __vector_12(void)
  724:	bf 93       	push	r27
  726:	ef 93       	push	r30
  728:	ff 93       	push	r31
-	if (Private_CallBackSPI != NULL)
  72a:	e0 91 60 00 	lds	r30, 0x0060
  72e:	f0 91 61 00 	lds	r31, 0x0061
  732:	30 97       	sbiw	r30, 0x00	; 0
  734:	09 f0       	breq	.+2      	; 0x738 <__vector_12+0x30>
-	{
-		Private_CallBackSPI();
  736:	09 95       	icall
-	}
  738:	ff 91       	pop	r31
  73a:	ef 91       	pop	r30
  73c:	bf 91       	pop	r27
@@ -2060,8 +995,8 @@ void  __vector_12(void)
  758:	18 95       	reti
 
 0000075a <main>:
-#include "LED_private.h"
-
+#define SLAVE_TRUE_SIGNAL  2
+#define SLAVE_FALSE_SIGNAL 3
 
 
 int main(void)
@@ -2094,9 +1029,9 @@ int main(void)
  786:	41 e0       	ldi	r20, 0x01	; 1
  788:	0e 94 49 00 	call	0x92	; 0x92 <DIO_SetPinDirection>
 	
-	
 	SPI_init();
  78c:	0e 94 48 03 	call	0x690	; 0x690 <SPI_init>
+	
 	LED_init(LED0_PORT,LED0_PIN);
  790:	82 e0       	ldi	r24, 0x02	; 2
  792:	62 e0       	ldi	r22, 0x02	; 2
@@ -2104,38 +1039,44 @@ int main(void)
 	
     while(1)
     {
+		
 		SPI_Receive(&ReceiveValue);
  798:	ce 01       	movw	r24, r28
  79a:	01 96       	adiw	r24, 0x01	; 1
  79c:	0e 94 5c 03 	call	0x6b8	; 0x6b8 <SPI_Receive>
-		u8 pin =GET_BIT(PORTB_REG,DIO_PIN4);
- 7a0:	88 b3       	in	r24, 0x18	; 24
- 7a2:	82 95       	swap	r24
- 7a4:	8f 70       	andi	r24, 0x0F	; 15
-		if ( 0== pin)
- 7a6:	98 2f       	mov	r25, r24
- 7a8:	91 70       	andi	r25, 0x01	; 1
- 7aa:	80 fd       	sbrc	r24, 0
- 7ac:	05 c0       	rjmp	.+10     	; 0x7b8 <main+0x5e>
+		if(MASTER_TRUE_SIGNAL==ReceiveValue)
+ 7a0:	89 81       	ldd	r24, Y+1	; 0x01
+ 7a2:	81 30       	cpi	r24, 0x01	; 1
+ 7a4:	59 f4       	brne	.+22     	; 0x7bc <main+0x62>
 		{
+			SPI_Tranceive(SLAVE_TRUE_SIGNAL,&ReceiveValue);
+ 7a6:	82 e0       	ldi	r24, 0x02	; 2
+ 7a8:	be 01       	movw	r22, r28
+ 7aa:	6f 5f       	subi	r22, 0xFF	; 255
+ 7ac:	7f 4f       	sbci	r23, 0xFF	; 255
+ 7ae:	0e 94 4f 03 	call	0x69e	; 0x69e <SPI_Tranceive>
 			LED_TurnON(LED0_PORT,LED0_PIN);
- 7ae:	82 e0       	ldi	r24, 0x02	; 2
- 7b0:	62 e0       	ldi	r22, 0x02	; 2
- 7b2:	0e 94 31 03 	call	0x662	; 0x662 <LED_TurnON>
- 7b6:	f0 cf       	rjmp	.-32     	; 0x798 <main+0x3e>
+ 7b2:	82 e0       	ldi	r24, 0x02	; 2
+ 7b4:	62 e0       	ldi	r22, 0x02	; 2
+ 7b6:	0e 94 31 03 	call	0x662	; 0x662 <LED_TurnON>
+ 7ba:	ee cf       	rjmp	.-36     	; 0x798 <main+0x3e>
 		}
-		if ( 1==pin )
- 7b8:	91 30       	cpi	r25, 0x01	; 1
- 7ba:	71 f7       	brne	.-36     	; 0x798 <main+0x3e>
+		else
 		{
+			SPI_Tranceive(SLAVE_FALSE_SIGNAL,&ReceiveValue);
+ 7bc:	83 e0       	ldi	r24, 0x03	; 3
+ 7be:	be 01       	movw	r22, r28
+ 7c0:	6f 5f       	subi	r22, 0xFF	; 255
+ 7c2:	7f 4f       	sbci	r23, 0xFF	; 255
+ 7c4:	0e 94 4f 03 	call	0x69e	; 0x69e <SPI_Tranceive>
 			LED_TurnOFF(LED0_PORT,LED0_PIN);
- 7bc:	82 e0       	ldi	r24, 0x02	; 2
- 7be:	62 e0       	ldi	r22, 0x02	; 2
- 7c0:	0e 94 39 03 	call	0x672	; 0x672 <LED_TurnOFF>
- 7c4:	e9 cf       	rjmp	.-46     	; 0x798 <main+0x3e>
+ 7c8:	82 e0       	ldi	r24, 0x02	; 2
+ 7ca:	62 e0       	ldi	r22, 0x02	; 2
+ 7cc:	0e 94 39 03 	call	0x672	; 0x672 <LED_TurnOFF>
+ 7d0:	e3 cf       	rjmp	.-58     	; 0x798 <main+0x3e>
 
-000007c6 <_exit>:
- 7c6:	f8 94       	cli
+000007d2 <_exit>:
+ 7d2:	f8 94       	cli
 
-000007c8 <__stop_program>:
- 7c8:	ff cf       	rjmp	.-2      	; 0x7c8 <__stop_program>
+000007d4 <__stop_program>:
+ 7d4:	ff cf       	rjmp	.-2      	; 0x7d4 <__stop_program>
