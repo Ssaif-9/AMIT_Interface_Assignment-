@@ -26,7 +26,7 @@ Init your LCD on the 4 bits mode and make two push buttons connected to the exte
 • Connect the Potentiometer to the ADC pin and then calculate the volt produced by changing the Potentiometer value.
 • Present the volte value in mV on the LCD
 
-# Assignment 6 (soon)
+# Assignment 6 
 • Init PWM in fast mode and ADC.
 • Connect the DC motor on the PWM pin and the Potentiometer on the ADC pin.
 • Make a program that changes the DC motor speed by changing the potentiometer value.
